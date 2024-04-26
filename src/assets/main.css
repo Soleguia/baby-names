@@ -70,13 +70,20 @@ main,
 	border-radius: 1.5rem;
 	cursor: pointer;
   }
-  .btn-name:hover,
-  .btn-name:active {
-	color: #333;
-	background-color: rgb(170, 170, 170);
-	border-color: hsl(0, 3%, 44%);
-  }
-  .btn-name:hover:after {
+  @media (hover: hover) {
+	  
+		.btn-name:hover{
+		  color: #333;
+		  background-color: rgb(170, 170, 170);
+		  border-color: hsl(0, 3%, 44%);
+		}
+	}
+	.btn-name:active {
+		  color: #333;
+		  background-color: rgb(170, 170, 170);
+		  border-color: hsl(0, 3%, 44%);
+		}
+  .btn-name:active:after {
 	content: 'X';
 	position: absolute;
 	top: 50%;
