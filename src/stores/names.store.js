@@ -13,18 +13,35 @@ export const useNamesStore = defineStore('names', () => {
     if (localStorageNames) {
       namesList = [...localStorageNames.names];
     } else {
-      const response = await fetch('/names.json');
-      const namesJson = await response.json();
-    
-      namesJson.map((name) => {
-        if (!names.value.includes(name)){
-          addName(name)
-        }
-      });
+      const files = [
+        '/data/adorables.json',
+        '/data/antiguos.json',
+        '/data/bonitos.json',
+        '/data/clasicos.json',
+        '/data/dulces.json',
+        '/data/lugares.json',
+        '/data/mas.json',
+        '/data/naturaleza.json',
+        '/data/originales.json',
+        '/data/palabras.json',
+        '/data/tradicionales.json',
+        '/data/names.json',
+      ];
+      
+      for (const file of files) {
+        const response = await fetch(file);
+        const namesJson = await response.json();
+        namesJson.map((name) => {
+          if (!names.value.includes(name)){
+            addName(name)
+          }
+        });
+      }
+      
       namesList = names.value;
     }
 
-    return namesList;
+    return namesList.sort((_a, _b) => 0.5 - Math.random());
     
   }
 
