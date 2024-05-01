@@ -26,6 +26,8 @@ export const useNamesStore = defineStore('names', () => {
         '/data/palabras.json',
         '/data/tradicionales.json',
         '/data/names.json',
+        '/data/lavanguardia.json',
+        '/data/euskera.json'
       ];
       
       for (const file of files) {
@@ -73,6 +75,21 @@ export const useNamesStore = defineStore('names', () => {
     addName(name);
   }
 
+  const restoreName = (name) => {
+    forLaterNames.value = forLaterNames.value.filter(forLaterName => forLaterName !== name);
+    addName(name);
+  }
+
+  const forLaterNames = ref([]);
+  const updateForLaterNames = (names) => {
+    forLaterNames.value = names
+  }
+  
+  const addForLaterName = (name) => {
+    forLaterNames.value.push(name)
+  }
+
+
   return { 
     names, 
     getNames, 
@@ -83,6 +100,11 @@ export const useNamesStore = defineStore('names', () => {
     discardedNames, 
     updateDiscardedNames,
     addDiscardedName, 
-    recoverName 
+    recoverName,
+    forLaterNames,
+    updateForLaterNames,
+    addForLaterName,
+    restoreName
   }
+  
 });

@@ -1,13 +1,20 @@
 <script setup>
+import {computed} from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
+import { useNamesStore } from './stores/names.store';
+const namesStore = useNamesStore();
+const namesCount = computed(() => namesStore.names.length);
+const forLaterCount = computed(() => namesStore.forLaterNames.length);
+const discardedCount = computed(() => namesStore.discardedNames.length);
 </script>
 
 <template>
   <header>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/discarded">Descartados</RouterLink>
+        <RouterLink to="/">Home <sup>{{ namesCount }}</sup></RouterLink>
+        <RouterLink to="/for-later">Reservados para después <sup>{{ forLaterCount }}</sup></RouterLink>
+        <RouterLink to="/discarded">Descartados <sup>{{ discardedCount }}</sup></RouterLink>
       </nav>
     </div>
   </header>
